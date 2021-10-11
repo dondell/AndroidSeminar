@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">New World</string>
+    <string name="hello_world">Hello Worlds</string>
+    <string name="button_click">Click me</string>
+    <string name="please_enter_your_name">Please enter your name</string>
+    <string name="firstname">Firstname:</string>
+    <string name="lastname">Lastname:</string>
+    <string name="email">Email:</string>
+</resources>
