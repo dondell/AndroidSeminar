@@ -1,5 +1,7 @@
 package com.dmj.newworld.adapter;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,15 +10,19 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.dmj.newworld.R;
-import com.dmj.newworld.model.UserModel;
+import com.dmj.newworld.activity.UserDetailsActivity;
+import com.dmj.newworld.base.BaseActivity;
+import com.dmj.newworld.model.user.UserModel;
 
 import java.util.ArrayList;
 
 public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.UserViewHolder> {
 
     private ArrayList<UserModel> userModelArrayList;
+    private Context context;
 
-    public UserListAdapter(ArrayList<UserModel> userModelArrayList) {
+    public UserListAdapter(BaseActivity context, ArrayList<UserModel> userModelArrayList) {
+        this.context = context;
         this.userModelArrayList = userModelArrayList;
     }
 
@@ -32,6 +38,16 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.UserVi
         holder.firstname.setText(userModel.firstname);
         holder.lastname.setText(userModel.lastname);
         holder.email.setText(userModel.email);
+
+        //Click listener to go to next screen
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentUserDetails = new Intent(context, UserDetailsActivity.class);
+                intentUserDetails.putExtra("userData", userModel);
+                context.startActivity(intentUserDetails);
+            }
+        });
     }
 
     @Override
